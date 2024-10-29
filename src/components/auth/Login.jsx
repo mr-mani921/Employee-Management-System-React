@@ -40,7 +40,7 @@ const Login = () => {
             value={password}
             onChange={(e)=>{onChangePassword(e)}}
           />
-          <button type="submit" className="w-[80%] bg-emerald-300 text-black font-semibold px-3 py-2 rounded-full bg-transparent placeholder:text-gray-400">
+          <button type="submit" className="w-[80%] bg-emerald-500 text-black font-semibold px-3 py-2 rounded-full bg-transparent">
             Log in
           </button>
         </form>
