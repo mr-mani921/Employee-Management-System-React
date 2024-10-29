@@ -8,19 +8,29 @@ const App = () => {
   const [user, setUser] = useState(null);
   const authData = useContext(AuthContext);
 
+  useEffect(() => {
+    if (authData) {
+      const loggedInUser = localStorage.getItem("loggedInUser");
+      setUser(loggedInUser.role)
+    }
+  }, [authData]);
   const handleLogin = (email, password) => {
     if (
       authData &&
       authData.admin.email == email &&
       authData.admin.password == password
     ) {
-      console.log("This is Admin");
       setUser("admin");
+      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
     } else if (
       authData &&
       authData.employees.find((e) => e.email == email && e.password == password)
     ) {
       setUser("employee");
+      localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify({ role: "employee" })
+      );
     } else {
       alert("Invalid Credentials");
     }
