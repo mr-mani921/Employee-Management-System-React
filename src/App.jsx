@@ -9,30 +9,33 @@ const App = () => {
   const authData = useContext(AuthContext);
 
   useEffect(() => {
-    if (authData) {
-      const loggedInUser = localStorage.getItem("loggedInUser");
-      setUser(loggedInUser.role)
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData);
     }
-  }, [authData]);
+  }, []);
+
   const handleLogin = (email, password) => {
     if (
       authData &&
-      authData.admin.email == email &&
-      authData.admin.password == password
+      authData.admin.email === email &&
+      authData.admin.password === password
     ) {
-      setUser("admin");
-      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
-    } else if (
-      authData &&
-      authData.employees.find((e) => e.email == email && e.password == password)
-    ) {
-      setUser("employee");
-      localStorage.setItem(
-        "loggedInUser",
-        JSON.stringify({ role: "employee" })
+      const adminData = { role: "admin", data: authData.admin };
+      setUser(adminData);
+      localStorage.setItem("loggedInUser", JSON.stringify(adminData));
+    } else if (authData) {
+      const employee = authData.employees.find(
+        (e) => e.email === email && e.password === password
       );
-    } else {
-      alert("Invalid Credentials");
+      if (employee) {
+        const employeeData = { role: "employee", data: employee };
+        setUser(employeeData);
+        localStorage.setItem("loggedInUser", JSON.stringify(employeeData));
+      } else {
+        alert("Invalid Credentials");
+      }
     }
   };
 
@@ -40,10 +43,10 @@ const App = () => {
     <>
       {!user ? (
         <Login handleLogin={handleLogin} />
-      ) : user == "admin" ? (
-        <AdminDashboard />
+      ) : user.role === "admin" ? (
+        <AdminDashboard userData={user.data} />
       ) : (
-        <EmployeeDashboard />
+        user.role === "employee" && <EmployeeDashboard userData={user.data} />
       )}
     </>
   );
