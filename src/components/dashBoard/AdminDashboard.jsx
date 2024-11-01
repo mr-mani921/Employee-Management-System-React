@@ -5,7 +5,7 @@ import AllTask from "../taskList/AllTask";
 
 const AdminDashboard = ({ userData }) => {
   return (
-    <div className="bg-[#1c1c1c] w-full h-screen text-white p-6">
+    <div className="bg-[#1c1c1c] w-full min-h-screen text-white p-6">
       <Header userData={userData} />
       <CreateTask userData={userData} />
       <AllTask userData={userData} />

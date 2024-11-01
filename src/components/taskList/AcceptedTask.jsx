@@ -1,8 +1,9 @@
 import React from 'react'
 
-const NewTask = ({tasks}) => {
+const AcceptedTask = ({tasks}) => {
   return (
     <div>
+       <h2>Accepted Tasks</h2>
       {tasks.map((e) => (
         <div key={e.id}
           className={`task h-full w-[26vw] ${e.style} p-6 flex flex-col flex-shrink-0 items-start rounded-xl`}
@@ -21,4 +22,4 @@ const NewTask = ({tasks}) => {
   )
 }
 
-export default NewTask
+export default AcceptedTask

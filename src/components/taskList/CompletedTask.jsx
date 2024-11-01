@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewTask = ({tasks}) => {
+const CompletedTask = ({tasks}) => {
   return (
     <div>
       {tasks.map((e) => (
@@ -21,4 +21,4 @@ const NewTask = ({tasks}) => {
   )
 }
 
-export default NewTask
+export default CompletedTask
