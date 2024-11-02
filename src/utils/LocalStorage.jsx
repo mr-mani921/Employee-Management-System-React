@@ -41,7 +41,7 @@ const employees = [
       completed: 0,
       active: 2,
       failed: 0,
-      new: 1,
+      new: 0,
     },
   },
   {
@@ -91,7 +91,7 @@ const employees = [
       completed: 0,
       active: 2,
       failed: 0,
-      new: 2,
+      new: 1,
     },
   },
   {
@@ -165,7 +165,7 @@ const employees = [
     ],
     taskCounts: {
       completed: 1,
-      active: 2,
+      active: 0,
       failed: 0,
       new: 2,
     },
@@ -216,7 +216,7 @@ const employees = [
     taskCounts: {
       completed: 1,
       active: 1,
-      failed: 1,
+      failed: 0,
       new: 1,
     },
   },

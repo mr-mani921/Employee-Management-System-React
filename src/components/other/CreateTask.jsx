@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CreateTask = () => {
+const CreateTask = ({setUserData}) => {
   const [formData, setFormData] = useState({
     name: "",
     title: "",
@@ -40,8 +40,6 @@ const CreateTask = () => {
     
 
     localStorage.setItem('employees',JSON.stringify(newEmpData))
-    window.location.reload();
-    
   };
 
   const handleChange = (e) => {
