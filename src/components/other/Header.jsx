@@ -1,6 +1,7 @@
 import React from "react";
 
 const Header = ({ setUser, userData }) => {
+  //the following will remove loggedInUser data from localstorage as a result the page will be redirected to the login page
   const logOutUser = () => {
     localStorage.setItem("loggedInUser", "");
     setUser("");
@@ -10,6 +11,7 @@ const Header = ({ setUser, userData }) => {
       <div className="greeting">
         <p className="text-3xl">Hello</p>
         <p className="text-4xl font-medium">
+          {/* if the user's role is admin then show admin other wise emloyee name */}
           {userData ? userData.name : "Admin"} 👋
         </p>
       </div>

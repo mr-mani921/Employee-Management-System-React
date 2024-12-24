@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+// this component will display all the tasks of the respective logged in user.
+
 const TaskList = ({ tasks, status,updateLocalStorage , loggedInUser}) => {
   
-
-  const getFilteredTasks = () => {
+  //function for filtering task of specific category like active , failed and returning them
+  const filterTasksByCategory = () => {
     if (!loggedInUser) return [];
     return loggedInUser.tasks.filter((task) => {
       if (status === "all") return true;
@@ -11,14 +13,17 @@ const TaskList = ({ tasks, status,updateLocalStorage , loggedInUser}) => {
     });
   };
 
-  const filteredTasks = getFilteredTasks();
+  //storing the returned filterd task of the function filter by category into a variable
+  const filteredTasks = filterTasksByCategory();
 
+    //function for changing the task status to activate.
   const handleActivate = (taskId) => {
     const updatedTasks = loggedInUser.tasks.map((task) =>
       task.id === taskId
         ? { ...task, new: false, active: true, completed: false, failed: false }
         : task
     );
+    //function for also changing the task counts when the task status is changed in the local storage for task overview and admin allTask sction
     const updatedTaskCounts = {
       ...loggedInUser.taskCounts,
       active: loggedInUser.taskCounts.active + 1,
@@ -27,6 +32,7 @@ const TaskList = ({ tasks, status,updateLocalStorage , loggedInUser}) => {
     updateLocalStorage({ ...loggedInUser, tasks: updatedTasks, taskCounts: updatedTaskCounts });
   };
 
+    //function for changing the task status to completed.
   const handleComplete = (taskId) => {
     const updatedTasks = loggedInUser.tasks.map((task) =>
       task.id === taskId ? { ...task, active: false, completed: true } : task
@@ -39,6 +45,7 @@ const TaskList = ({ tasks, status,updateLocalStorage , loggedInUser}) => {
     updateLocalStorage({ ...loggedInUser, tasks: updatedTasks, taskCounts: updatedTaskCounts });
   };
 
+    //function for changing the task status to failed.
   const handleFail = (taskId) => {
     const updatedTasks = loggedInUser.tasks.map((task) =>
       task.id === taskId ? { ...task, active: false, failed: true } : task

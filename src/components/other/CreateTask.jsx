@@ -9,6 +9,7 @@ const CreateTask = ({setUserData}) => {
     description: "",
     style: "",
   });
+  //Form's submit handler.
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormData({
@@ -19,29 +20,34 @@ const CreateTask = ({setUserData}) => {
       description: "",
       style: "",
     });
+    //Fetched and stored the all present employees data in the local storage.
     const empData = JSON.parse(localStorage.getItem("employees"));
 
+    //Found the targeted employee to whom the task is gonna assign by comparing his/her name with the stored employees.
     const targetedEmployee = empData.find((e)=>(e.name==formData.name));
+    
 
     const index = empData.findIndex((item)=> targetedEmployee.id == item.id);
     
+    //stored new task in the variable to push it in the respective employee data
     const newTask = {id: targetedEmployee.tasks.length+1, title: formData.title, description: formData.description, date: formData.date, category: formData.category, active:false,new:true,completed: false, failed: false,style:formData.style}
     targetedEmployee.taskCounts.new += 1;
     targetedEmployee.tasks.push(newTask)
     
     let newEmpData;
+    //A security check that if the employee's id is found or not.
     if(index !== -1){
+      //Created a new employee data with all the previous data except the data of the employee to whom the task is assigned this will update the employees data while mantaining the previous data.
       newEmpData = [
         ...empData.slice(0,index),targetedEmployee, ...empData.slice(index+1)
       ] 
-    }
+    }    
 
-    console.log(newEmpData);
-    
-
+    //in last set the update employees in the localstorage.
     localStorage.setItem('employees',JSON.stringify(newEmpData))
   };
 
+  //input handlers
   const handleChange = (e) => {
     const { name, value } = e.target;
 

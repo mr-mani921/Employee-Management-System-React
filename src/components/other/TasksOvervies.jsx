@@ -1,5 +1,7 @@
 import React from "react";
 
+// this component will display the tasks counts according to there status of the respecitve logged in user.
+
 const TasksOvervies = ({ userData, setStatus, taskCounts }) => {
   return (
     <div className="w-full h-[34vh] mt-4 flex gap-8">
@@ -17,9 +19,7 @@ const TasksOvervies = ({ userData, setStatus, taskCounts }) => {
       </div>
       <div className="task w-full h-full flex flex-col justify-between items-start bg-red-400 p-8 rounded-xl">
         <div>
-          <p className="count font-bold text-4xl">
-            {taskCounts?.completed}
-          </p>
+          <p className="count font-bold text-4xl">{taskCounts?.completed}</p>
           <p className="font-semibold text-2xl">Completed Task</p>
         </div>
         <button
@@ -31,9 +31,7 @@ const TasksOvervies = ({ userData, setStatus, taskCounts }) => {
       </div>
       <div className="task w-full h-full flex flex-col justify-between items-start bg-yellow-400 p-8 rounded-xl text-black">
         <div>
-          <p className="count font-bold text-4xl">
-            {taskCounts?.active}
-          </p>
+          <p className="count font-bold text-4xl">{taskCounts?.active}</p>
           <p className="font-semibold text-2xl">Active Task</p>
         </div>
         <button
@@ -45,9 +43,7 @@ const TasksOvervies = ({ userData, setStatus, taskCounts }) => {
       </div>
       <div className="task w-full h-full flex flex-col justify-between items-start bg-green-400 p-8 rounded-xl">
         <div>
-          <p className="count font-bold text-4xl">
-            {taskCounts?.failed}
-          </p>
+          <p className="count font-bold text-4xl">{taskCounts?.failed}</p>
           <p className="font-semibold text-2xl">Failed Task</p>
         </div>
         <button

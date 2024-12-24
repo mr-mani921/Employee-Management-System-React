@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
+//component that will display all the tasks of all the employees in the admin dashboard.
+
 const AllTask = () => {
   const userData = useContext(AuthContext);
   return (

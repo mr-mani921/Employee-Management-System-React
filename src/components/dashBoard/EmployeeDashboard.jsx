@@ -14,7 +14,7 @@ const EmployeeDashboard = ({ setUser, userData }) => {
     }
   }, []);
 
-
+  //the function that will update the logged in user data in the localstorage
   const updateLocalStorage = (updatedUserData) => {
     const updatedLoggedInUser = {
       ...JSON.parse(localStorage.getItem("loggedInUser")),
